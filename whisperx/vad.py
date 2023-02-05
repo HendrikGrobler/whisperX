@@ -179,7 +179,7 @@ if __name__ == "__main__":
     N = 0.15
     g = df[0].sub(df[1].shift())
     input_base = input_fp.split('.')[0]
-    df = df.groupby(g.gt(N).cumsum()).agg({0:'min', 1:'max'})
+    df = df.groupby(g.gt(N).cumsum()).agg({0:'min', 1:'max'}, group_keys=False)
     df.to_csv(f"/work/maxbain/tmp/{input_base}.lab", header=None, index=False, sep=" ")
     print(df)
     import pdb; pdb.set_trace()

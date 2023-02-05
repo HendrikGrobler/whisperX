@@ -298,7 +298,7 @@ def align(
     char_segments_arr = pd.DataFrame(char_segments_arr)
     not_space = char_segments_arr["char"] != " "
 
-    per_seg_grp = char_segments_arr.groupby(["segment-idx", "subsegment-idx"], as_index = False)
+    per_seg_grp = char_segments_arr.groupby(["segment-idx", "subsegment-idx"], as_index = False, group_keys=False)
     char_segments_arr = per_seg_grp.apply(lambda x: x.reset_index(drop = True)).reset_index()
     per_word_grp = char_segments_arr[not_space].groupby(["segment-idx", "subsegment-idx", "word-idx"])
     per_subseg_grp = char_segments_arr[not_space].groupby(["segment-idx", "subsegment-idx"])
